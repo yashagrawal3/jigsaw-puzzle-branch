@@ -472,11 +472,7 @@ class JigsawPuzzleUI (BorderFrame):
                 lbl[0].set_label(_(lbl[1]))
         if not self.game.get_parent() and not first_time:
             self.game_box.pop()
-            if self.notebook.get_current_page() == 1:
-                m = self.do_lesson_plan
-            else:
-                m = self.do_select_category
-            m(self)
+            self.do_select_category(self)
 
     def set_piece_cut (self, btn, cutter, *args):
         if self.is_readonly():
