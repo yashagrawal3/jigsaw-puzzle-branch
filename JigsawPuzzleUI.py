@@ -134,26 +134,26 @@ class JigsawPuzzleUI (BorderFrame):
         spacer.set_size_request(-1, 5)
         control_panel_box.pack_start(spacer, False, False, 0)
 
-        #btn_box = Gtk.Table(2,5,False)
-        #btn_box.set_col_spacings(5)
-        #btn_box.set_row_spacings(5)
-        #btn_box.attach(Gtk.Label(), 0,1,0,2)
+        btn_box = Gtk.Table(2,5,False)
+        btn_box.set_col_spacings(5)
+        btn_box.set_row_spacings(5)
+        btn_box.attach(Gtk.Label(), 0,1,0,2)
         # Cut type buttons
         self.btn_basic_cut = Gtk.ToggleButton()
-        #i = Gtk.Image()
-        #i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'cut_basic.svg')))
-        #self.btn_basic_cut.set_image(i)
-        #btn_box.attach(prepare_btn(self.btn_basic_cut), 1,2,0,1,0,0)
+        i = Gtk.Image()
+        i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'cut_basic.svg')))
+        self.btn_basic_cut.set_image(i)
+        btn_box.attach(prepare_btn(self.btn_basic_cut), 1,2,0,1,0,0)
         self.btn_simple_cut = Gtk.ToggleButton()
-        #i = Gtk.Image()
-        #i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'cut_simple.svg')))
-        #self.btn_simple_cut.set_image(i)
-        #btn_box.attach(prepare_btn(self.btn_simple_cut), 2,3,0,1,0,0)
+        i = Gtk.Image()
+        i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'cut_simple.svg')))
+        self.btn_simple_cut.set_image(i)
+        btn_box.attach(prepare_btn(self.btn_simple_cut), 2,3,0,1,0,0)
         self.btn_classic_cut = Gtk.ToggleButton()
-        #i = Gtk.Image()
-        #i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'cut_classic.svg')))
-        #self.btn_classic_cut.set_image(i)
-        ## Link cutter buttons with cutter styles
+        i = Gtk.Image()
+        i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'cut_classic.svg')))
+        self.btn_classic_cut.set_image(i)
+        # Link cutter buttons with cutter styles
         self.btn_cut_mapping = {
             'basic': self.btn_basic_cut,
             'simple': self.btn_simple_cut,
@@ -162,24 +162,24 @@ class JigsawPuzzleUI (BorderFrame):
         for k,v in self.btn_cut_mapping.items():
             v.connect("released", self.set_piece_cut, k)
 
-        #btn_box.attach(prepare_btn(self.btn_classic_cut), 3,4,0,1,0,0)
-        ## Difficulty level buttons
+        btn_box.attach(prepare_btn(self.btn_classic_cut), 3,4,0,1,0,0)
+        # Difficulty level buttons
         self.btn_easy_level = Gtk.ToggleButton()
-        #i = Gtk.Image()
-        #i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'level_easy.svg')))
-        #self.btn_easy_level.set_active(True)
-        #self.btn_easy_level.set_image(i)
-        #btn_box.attach(prepare_btn(self.btn_easy_level), 1,2,1,2,0,0)
+        i = Gtk.Image()
+        i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'level_easy.svg')))
+        self.btn_easy_level.set_active(True)
+        self.btn_easy_level.set_image(i)
+        btn_box.attach(prepare_btn(self.btn_easy_level), 1,2,1,2,0,0)
         self.btn_normal_level = Gtk.ToggleButton()
-        #i = Gtk.Image()
-        #i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'level_normal.svg')))
-        #self.btn_normal_level.set_image(i)
-        #btn_box.attach(prepare_btn(self.btn_normal_level), 2,3,1,2,0,0)
+        i = Gtk.Image()
+        i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'level_normal.svg')))
+        self.btn_normal_level.set_image(i)
+        btn_box.attach(prepare_btn(self.btn_normal_level), 2,3,1,2,0,0)
         self.btn_hard_level = Gtk.ToggleButton()
-        #i = Gtk.Image()
-        #i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'level_hard.svg')))
-        #self.btn_hard_level.set_image(i)
-        ## Link level buttons with levels
+        i = Gtk.Image()
+        i.set_from_pixbuf(utils.load_image(os.path.join('icons', 'level_hard.svg')))
+        self.btn_hard_level.set_image(i)
+        # Link level buttons with levels
         self.btn_level_mapping = {
             3: self.btn_easy_level,
             5: self.btn_normal_level,
@@ -188,10 +188,10 @@ class JigsawPuzzleUI (BorderFrame):
         for k,v in self.btn_level_mapping.items():
             v.connect("released", self.set_level, k)
 
-        #btn_box.attach(prepare_btn(self.btn_hard_level), 3,4,1,2,0,0)
+        btn_box.attach(prepare_btn(self.btn_hard_level), 3,4,1,2,0,0)
         
-        #btn_box.attach(Gtk.Label(), 4,5,0,2)
-        #control_panel_box.pack_start(btn_box, False, True, 0)
+        btn_box.attach(Gtk.Label(), 4,5,0,2)
+        control_panel_box.pack_start(btn_box, False, True, 0)
 
         self.thumb = ImageSelectorWidget(frame_color=COLOR_FRAME_THUMB,
                                          prepare_btn_cb=prepare_btn,
@@ -205,27 +205,27 @@ class JigsawPuzzleUI (BorderFrame):
         control_panel_box.pack_start(spacer, False, False, 0)
         
         # The game control buttons
-        #btn_box = Gtk.Table(3,4,False)
-        #btn_box.set_row_spacings(2)
-        #btn_box.attach(Gtk.Label(), 0,1,0,4)
-        #btn_box.attach(Gtk.Label(), 2,3,0,4)
+        btn_box = Gtk.Table(3,4,False)
+        btn_box.set_row_spacings(2)
+        btn_box.attach(Gtk.Label(), 0,1,0,4)
+        btn_box.attach(Gtk.Label(), 2,3,0,4)
         self.btn_solve = prepare_btn(Gtk.Button(" "), 200)
-        #self.labels_to_translate.append([self.btn_solve, _("Solve")])
-        #self.btn_solve.connect("clicked", self.do_solve)
-        #btn_box.attach(self.btn_solve, 1,2,0,1,0,0)
+        self.labels_to_translate.append([self.btn_solve, _("Solve")])
+        self.btn_solve.connect("clicked", self.do_solve)
+        btn_box.attach(self.btn_solve, 1,2,0,1,0,0)
         self.btn_shuffle = prepare_btn(Gtk.Button(" "), 200)
-        #self.labels_to_translate.append([self.btn_shuffle, _("Shuffle")])
-        #self.btn_shuffle.connect("clicked", self.do_shuffle)
-        #btn_box.attach(self.btn_shuffle, 1,2,1,2,0,0)
+        self.labels_to_translate.append([self.btn_shuffle, _("Shuffle")])
+        self.btn_shuffle.connect("clicked", self.do_shuffle)
+        btn_box.attach(self.btn_shuffle, 1,2,1,2,0,0)
         self.btn_add = prepare_btn(Gtk.Button(" "), 200)
-        #self.labels_to_translate.append([self.btn_add, _("My Picture")])
-        #self.btn_add.connect("clicked", self.do_add_image)
-        #btn_box.attach(self.btn_add, 1,2,2,3,0,0)
+        self.labels_to_translate.append([self.btn_add, _("My Picture")])
+        self.btn_add.connect("clicked", self.do_add_image)
+        btn_box.attach(self.btn_add, 1,2,2,3,0,0)
         self.btn_hint = prepare_btn(Gtk.ToggleButton(" "), 200)
-        #self.labels_to_translate.append([self.btn_hint, _("Board Hint")])
-        #self.btn_hint.connect("clicked", self.do_show_hint)
-        #btn_box.attach(self.btn_hint, 1,2,3,4,0,0)
-        #control_panel_box.pack_start(btn_box, False)
+        self.labels_to_translate.append([self.btn_hint, _("Board Hint")])
+        self.btn_hint.connect("clicked", self.do_show_hint)
+        btn_box.attach(self.btn_hint, 1,2,3,4,0,0)
+        control_panel_box.pack_start(btn_box, False, False, 0)
         self.control_panel_box = control_panel_box
 
         # Control panel end
