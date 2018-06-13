@@ -30,6 +30,7 @@ from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.graphics.toolbarbox import ToolbarButton
 from sugar3.graphics.toolbutton import ToolButton
 from sugar3.graphics.toggletoolbutton import ToggleToolButton
+from sugar3.activity.widgets import StopButton
 from gettext import gettext as _
 import logging, os, sys
 import time
@@ -239,109 +240,112 @@ class JigsawPuzzleActivity(Activity, TubeHelper):
         self._sample_window = None
         self.fixed = Gtk.Fixed()
         self.ui = JigsawPuzzleUI(self)
-        toolbar_box = ToolbarBox()
-        self.set_toolbar_box(toolbar_box)
-        toolbar_box.show()
+        toolbox = ToolbarBox()
+        self.set_toolbar_box(toolbox)
+        toolbox.show()
         activity_button = ActivityToolbarButton(self)
-        toolbar_box.toolbar.insert(activity_button, -1)
+        toolbox.toolbar.insert(activity_button, -1)
         activity_button.show()
 
-        self.btn_basic_cut = ToolButton('cut_basic')
-        self.btn_basic_cut.set_tooltip(_('Basic style'))
-        toolbar_box.toolbar.insert(self.btn_basic_cut, -1)
-        #btn_9.set_active(True)
-        #btn_9.connect('clicked', self.ui.set_nr_pieces, 9)
-        self.btn_basic_cut.show()
+        # self.btn_basic_cut = ToolButton('cut_basic')
+        # self.btn_basic_cut.set_tooltip(_('Basic style'))
+        # toolbox.toolbar.insert(self.btn_basic_cut, -1)
+        # #btn_9.set_active(True)
+        # #btn_9.connect('clicked', self.ui.set_nr_pieces, 9)
+        # self.btn_basic_cut.show()
 
-        self.btn_simple_cut = ToolButton('cut_simple')
-        self.btn_simple_cut.set_tooltip(_('Simple style'))
-        toolbar_box.toolbar.insert(self.btn_simple_cut, -1)
-        #btn_9.set_active(True)
-        #btn_12.connect('clicked', self.ui.set_nr_pieces, 12)
-        self.btn_simple_cut.show()
+        # self.btn_simple_cut = ToolButton('cut_simple')
+        # self.btn_simple_cut.set_tooltip(_('Simple style'))
+        # toolbox.toolbar.insert(self.btn_simple_cut, -1)
+        # #btn_9.set_active(True)
+        # #btn_12.connect('clicked', self.ui.set_nr_pieces, 12)
+        # self.btn_simple_cut.show()
 
-        self.btn_classic_cut = ToolButton('cut_classic')
-        self.btn_classic_cut.set_tooltip(_('Classic style'))
-        toolbar_box.toolbar.insert(self.btn_classic_cut, -1)
-        #btn_9.set_active(True)
-        #btn_16.connect('clicked', self.ui.set_nr_pieces, 16)
-        self.btn_classic_cut.show()
+        # self.btn_classic_cut = ToolButton('cut_classic')
+        # self.btn_classic_cut.set_tooltip(_('Classic style'))
+        # toolbox.toolbar.insert(self.btn_classic_cut, -1)
+        # #btn_9.set_active(True)
+        # #btn_16.connect('clicked', self.ui.set_nr_pieces, 16)
+        # self.btn_classic_cut.show()
 
-        self.btn_cut_mapping = {
-            'basic': self.btn_basic_cut,
-            'simple': self.btn_simple_cut,
-            'classic': self.btn_classic_cut,
-            }
-        for k,v in self.btn_cut_mapping.items():
-            v.connect('clicked', self.ui.set_piece_cut, k)
+        # self.btn_cut_mapping = {
+        #     'basic': self.btn_basic_cut,
+        #     'simple': self.btn_simple_cut,
+        #     'classic': self.btn_classic_cut,
+        #     }
+        # for k,v in self.btn_cut_mapping.items():
+        #     v.connect('clicked', self.ui.set_piece_cut, k)
 
-        self.btn_easy_level = ToolButton('level_easy')
-        self.btn_easy_level.set_tooltip(_('Easy'))
-        toolbar_box.toolbar.insert(self.btn_easy_level, -1)
-        #btn_9.set_active(True)
-        #btn_solve.connect('clicked', self.ui.do_solve)
-        self.btn_easy_level.show()
+        # self.btn_easy_level = ToolButton('level_easy')
+        # self.btn_easy_level.set_tooltip(_('Easy'))
+        # toolbox.toolbar.insert(self.btn_easy_level, -1)
+        # #btn_9.set_active(True)
+        # #btn_solve.connect('clicked', self.ui.do_solve)
+        # self.btn_easy_level.show()
 
-        self.btn_normal_level = ToolButton('level_normal')
-        self.btn_normal_level.set_tooltip(_('Normal'))
-        toolbar_box.toolbar.insert(self.btn_normal_level, -1)
-        #btn_9.set_active(True)
-        #btn_solve.connect('clicked', self.ui.do_solve)
-        self.btn_normal_level.show()
+        # self.btn_normal_level = ToolButton('level_normal')
+        # self.btn_normal_level.set_tooltip(_('Normal'))
+        # toolbox.toolbar.insert(self.btn_normal_level, -1)
+        # #btn_9.set_active(True)
+        # #btn_solve.connect('clicked', self.ui.do_solve)
+        # self.btn_normal_level.show()
 
-        self.btn_hard_level = ToolButton('level_hard')
-        self.btn_hard_level.set_tooltip(_('Hard'))
-        toolbar_box.toolbar.insert(self.btn_hard_level, -1)
-        #btn_9.set_active(True)
-        #btn_solve.connect('clicked', self.ui.do_solve)
-        self.btn_hard_level.show()
+        # self.btn_hard_level = ToolButton('level_hard')
+        # self.btn_hard_level.set_tooltip(_('Hard'))
+        # toolbox.toolbar.insert(self.btn_hard_level, -1)
+        # #btn_9.set_active(True)
+        # #btn_solve.connect('clicked', self.ui.do_solve)
+        # self.btn_hard_level.show()
 
-        self.btn_level_mapping = {
-            3: self.btn_easy_level,
-            5: self.btn_normal_level,
-            8: self.btn_hard_level,
-            }
-        for k,v in self.btn_level_mapping.items():
-            v.connect('clicked', self.ui.set_level, k)
+        # self.btn_level_mapping = {
+        #     3: self.btn_easy_level,
+        #     5: self.btn_normal_level,
+        #     8: self.btn_hard_level,
+        #     }
+        # for k,v in self.btn_level_mapping.items():
+        #     v.connect('clicked', self.ui.set_level, k)
 
         self.btn_solve = ToolButton('dialog-ok')
         self.btn_solve.set_tooltip(_('Solve'))
-        toolbar_box.toolbar.insert(self.btn_solve, -1)
+        toolbox.toolbar.insert(self.btn_solve, -1)
         self.btn_solve.connect('clicked', self.ui.do_solve)
         self.btn_solve.show()
 
         self.btn_shuffle = ToolButton('edit-redo')
         self.btn_shuffle.set_tooltip(_('Shuffle'))
-        toolbar_box.toolbar.insert(self.btn_shuffle, -1)
+        toolbox.toolbar.insert(self.btn_shuffle, -1)
         self.btn_shuffle.connect("clicked", self.ui.do_shuffle)
         self.btn_shuffle.show()
 
-
         self.btn_hint = ToggleToolButton('image-load')
         self.btn_hint.set_tooltip(_('Import picture from Journal'))
-        toolbar_box.toolbar.insert(self.btn_hint, -1)
+        toolbox.toolbar.insert(self.btn_hint, -1)
         self.btn_hint.connect("clicked", self.ui.do_show_hint)
         self.btn_hint.show()
 
-
         self.btn_add = ToolButton('image-load')
         self.btn_add.set_tooltip(_('Import picture from Journal'))
-        toolbar_box.toolbar.insert(self.btn_add, -1)
+        toolbox.toolbar.insert(self.btn_add, -1)
         self.btn_add.connect("clicked", self.ui.do_add_image)
         self.btn_add.show()
 
-
         btn_select = ToolButton('imageviewer')
         btn_select.set_tooltip(_('Add Picture'))
-        toolbar_box.toolbar.insert(btn_select, -1)
+        toolbox.toolbar.insert(btn_select, -1)
         #btn_9.set_active(True)
         btn_select.connect('clicked', self.do_samples_cb)
         btn_select.show()
 
-  
+        separator = Gtk.SeparatorToolItem()
+        separator.props.draw = False
+        separator.set_expand(True)
+        toolbox.toolbar.insert(separator, -1)
 
- 
-  
+        stop_button = StopButton(self)
+        stop_button.props.accelerator = '<Ctrl>q'
+        toolbox.toolbar.insert(stop_button, -1)
+        stop_button.show()
+
     # Toolbar title size hack
         
         
