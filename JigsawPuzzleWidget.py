@@ -156,7 +156,10 @@ class JigsawPiece (Gtk.EventBox):
 
     def _expose_cb (self, *args):
         if self.shape is not None:
-            self.get_window.cairo_region_create_from_surface(self.shape, 0, 0)
+            # cairo_mask(self.get_window(), self.shape)
+            # self.get_window().cairo_region_create_from_surface(self.shape, 0, 0)
+            # region = Gdk.cairo_region_create_from_surface(self.shape)
+            self.get_window().shape_combine_mask(self.shape, 0, 0)
 
 
 class CutterBasic (object):
@@ -549,6 +552,7 @@ class JigsawBoard (BorderFrame):
                 pb, pb_wf, mask, px, py, pw, ph = self.cutboard.pieces[col][row]
                 piece.set_from_pixbuf(pb, pb_wf, mask)
                 piece.show()
+                print(mask)
                 piece.set_index(len(self.board_distribution))
                 self.board_distribution.append((px, py, pw*MAGNET_POWER_PERCENT/100.0, ph*MAGNET_POWER_PERCENT/100.0))
                 yield piece
@@ -666,8 +670,8 @@ class JigsawPuzzleWidget (Gtk.EventBox):
             if child is not self.board:
                 self._container.remove(child)
         #value1 = GObject.Value(None, None)
-        bx = self._container.child_get_property(self.board, "x", "")
-        by = self._container.child_get_property(self.board, "y", "")
+        bx = self._container.child_get_property(self.board, "x", None)
+        by = self._container.child_get_property(self.board, "y", None)
         
         logger.debug('child here')
         logger.debug(bx)
